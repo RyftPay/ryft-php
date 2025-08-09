@@ -1,0 +1,11 @@
+.php_cs.cache
+phpunit.xml
+.phpunit.result.cache
+composer.phar
+vendor/*
+*.iml
+.idea
+*.log
+.DS_*
+composer.lock
+.phpactor.json
