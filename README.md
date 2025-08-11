@@ -1,13 +1,14 @@
 # Ryft PHP
 
 [![build](https://github.com/RyftPay/ryft-php/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/RyftPay/ryft-php/actions/workflows/build-and-test.yml)
+[![PHP version](https://badge.fury.io/ph/ryftpay%2Fryft-php.svg)](https://badge.fury.io/ph/ryftpay%2Fryft-php)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## Installation
 
 ```sh
 # with composer
-composer install @ryftpay/ryft-php
+composer install ryftpay/ryft-php
 ```
 
 ## Usage
