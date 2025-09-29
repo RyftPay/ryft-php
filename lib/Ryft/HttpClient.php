@@ -9,6 +9,7 @@ final class HttpClient implements HttpInterface
     private $privateKey;
     private $headers;
     private $baseUrl;
+    private $curl;
 
     public function __construct(string $baseUrl, string $privateKey)
     {
@@ -22,10 +23,20 @@ final class HttpClient implements HttpInterface
             'ryft-sdk-name: ' . Version::SDK_NAME,
             'ryft-sdk-version: ' . Version::SDK_VERSION,
         ];
+        $this->curl = new CurlClient();
+    }
+
+    public function setCurl($curl): void
+    {
+        $this->curl = $curl;
     }
 
     public function request(string $method, string $path, ?array $params = null, $body = null, ?string $account = null): array
     {
+        if (!is_array($body) && $body instanceof Arrayable) {
+            $body = $body->toArray();
+        }
+
         switch ($method) {
             case 'GET':
                 return $this->doGet($path, $params, $account);
@@ -75,19 +86,19 @@ final class HttpClient implements HttpInterface
             $headers[] = 'Account: ' . $account;
         }
 
-        $ch = curl_init($url);
+        $this->curl->init($url);
 
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($method));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $this->curl->setOption(CURLOPT_CUSTOMREQUEST, strtoupper($method));
+        $this->curl->setOption(CURLOPT_HTTPHEADER, $headers);
+        $this->curl->setOption(CURLOPT_RETURNTRANSFER, true);
 
         if ($body !== null) {
             $jsonBody = json_encode($body);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonBody);
+            $this->curl->setOption(CURLOPT_POSTFIELDS, $jsonBody);
         }
 
-        $response = curl_exec($ch);
-        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $response = $this->curl->exec();
+        $statusCode = $this->curl->getInfo(CURLINFO_HTTP_CODE);
         $data = json_decode($response, true);
 
         if ($statusCode < 200 || $statusCode > 299) {
@@ -100,7 +111,7 @@ final class HttpClient implements HttpInterface
             );
         }
 
-        curl_close($ch);
+        $this->curl->close();
 
         return $data;
     }
