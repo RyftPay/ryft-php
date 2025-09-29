@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\PayoutMethods\Models;
 
-final class UpdatePayoutMethodRequest
+use Ryft\Arrayable;
+
+final class UpdatePayoutMethodRequest implements Arrayable
 {
     private $displayName = null;
     private $bankAccount = null;
@@ -37,5 +39,13 @@ final class UpdatePayoutMethodRequest
     {
         $this->bankAccount = $bankAccount;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'displayName' => $this->displayName,
+            'bankAccount' => $this->bankAccount
+        ];
     }
 }

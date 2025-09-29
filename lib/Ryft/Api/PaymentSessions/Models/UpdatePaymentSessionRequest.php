@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\PaymentSessions\Models;
 
-final class UpdatePaymentSessionRequest
+use Ryft\Arrayable;
+
+final class UpdatePaymentSessionRequest implements Arrayable
 {
     private $amount = null;
     private $customerEmail = null;
@@ -142,5 +144,20 @@ final class UpdatePaymentSessionRequest
     {
         $this->paymentSettings = $paymentSettings;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'amount' => $this->amount,
+            'customerEmail' => $this->customerEmail,
+            'platformFee' => $this->platformFee,
+            'splits' => $this->splits,
+            'metadata' => $this->metadata,
+            'captureFlow' => $this->captureFlow,
+            'shippingDetails' => $this->shippingDetails,
+            'orderDetails' => $this->orderDetails,
+            'paymentSettings' => $this->paymentSettings,
+        ];
     }
 }

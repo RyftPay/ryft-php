@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\PaymentSessions\Models;
 
-final class ContinuePaymentSessionRequest
+use Ryft\Arrayable;
+
+final class ContinuePaymentSessionRequest implements Arrayable
 {
     private $clientSecret = null;
     private $threeDs = null;
@@ -37,5 +39,13 @@ final class ContinuePaymentSessionRequest
     {
         $this->threeDs = $threeDs;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'clientSecret' => $this->clientSecret,
+            'threeDs' => $this->threeDs,
+        ];
     }
 }

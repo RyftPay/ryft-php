@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Subscriptions\Models;
 
-final class PauseSubscriptionRequest
+use Ryft\Arrayable;
+
+final class PauseSubscriptionRequest implements Arrayable
 {
     private $reason;
     private $resumeTimestamp;
@@ -43,5 +45,14 @@ final class PauseSubscriptionRequest
     public function setUnschedule(?bool $unschedule): void
     {
         $this->unschedule = $unschedule;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'reason' => $this->reason,
+            'resumeTimestamp' => $this->resumeTimestamp,
+            'unschedule' => $this->unschedule
+        ];
     }
 }

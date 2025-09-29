@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Customers\Models;
 
-final class CreateCustomerRequest
+use Ryft\Arrayable;
+
+final class CreateCustomerRequest implements Arrayable
 {
     private $email = null;
     private $firstName = null;
@@ -97,5 +99,17 @@ final class CreateCustomerRequest
     {
         $this->metadata = $metadata;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'email' => $this->email,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'homePhoneNumber' => $this->homePhoneNumber,
+            'mobilePhoneNumber' => $this->mobilePhoneNumber,
+            'metadata' => $this->metadata
+        ];
     }
 }

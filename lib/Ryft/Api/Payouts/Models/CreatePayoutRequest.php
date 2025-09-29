@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Payouts\Models;
 
-final class CreatePayoutRequest
+use Ryft\Arrayable;
+
+final class CreatePayoutRequest implements Arrayable
 {
     private $amount = null;
     private $currency = null;
@@ -67,5 +69,15 @@ final class CreatePayoutRequest
     {
         $this->metadata = $metadata;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'amount' => $this->amount,
+            'currency' => $this->currency,
+            'payoutMethodId' => $this->payoutMethodId,
+            'metadata' => $this->metadata
+        ];
     }
 }

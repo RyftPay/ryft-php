@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Disputes\Models;
 
-final class AddDisputeEvidenceRequest
+use Ryft\Arrayable;
+
+final class AddDisputeEvidenceRequest implements Arrayable
 {
     private $text = null;
     private $files = null;
@@ -37,5 +39,13 @@ final class AddDisputeEvidenceRequest
     {
         $this->files = $files;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'text' => $this->text,
+            'files' => $this->files
+        ];
     }
 }

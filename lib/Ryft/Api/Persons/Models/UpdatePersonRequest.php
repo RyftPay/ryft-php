@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Persons\Models;
 
-final class UpdatePersonRequest
+use Ryft\Arrayable;
+
+final class UpdatePersonRequest implements Arrayable
 {
     private $firstName = null;
     private $middleNames = null;
@@ -202,5 +204,24 @@ final class UpdatePersonRequest
     {
         $this->metadata = $metadata;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'firstName' => $this->firstName,
+            'middleNames' => $this->middleNames,
+            'lastName' => $this->lastName,
+            'email' => $this->email,
+            'dateOfBirth' => $this->dateOfBirth,
+            'countryOfBirth' => $this->countryOfBirth,
+            'gender' => $this->gender,
+            'nationalities' => $this->nationalities,
+            'address' => $this->address,
+            'phoneNumber' => $this->phoneNumber,
+            'businessRoles' => $this->businessRoles,
+            'documents' => $this->documents,
+            'metadata' => $this->metadata
+        ];
     }
 }

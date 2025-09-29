@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\ApplePay\Models;
 
-final class RegisterApplePayDomainRequest
+use Ryft\Arrayable;
+
+final class RegisterApplePayDomainRequest implements Arrayable
 {
     private $domainName;
 
@@ -22,5 +24,12 @@ final class RegisterApplePayDomainRequest
     {
         $this->domainName = $domainName;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'domainName' => $this->domainName,
+        ];
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\PaymentSessions\Models;
 
-final class RefundPaymentSessionRequest
+use Ryft\Arrayable;
+
+final class RefundPaymentSessionRequest implements Arrayable
 {
     private $amount = null;
     private $reason = null;
@@ -82,5 +84,16 @@ final class RefundPaymentSessionRequest
     {
         $this->captureTransaction = $captureTransaction;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'amount' => $this->amount,
+            'reason' => $this->reason,
+            'refundPlatformFee' => $this->refundPlatformFee,
+            'splits' => $this->splits,
+            'captureTransaction' => $this->captureTransaction
+        ];
     }
 }

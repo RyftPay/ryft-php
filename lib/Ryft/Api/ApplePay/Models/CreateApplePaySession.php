@@ -2,15 +2,17 @@
 
 namespace Ryft\Api\ApplePay\Models;
 
-final class CreateApplePaySession
+use Ryft\Arrayable;
+
+final class CreateApplePaySession implements Arrayable
 {
-    private $displaName;
+    private $displayName;
     private $domainName;
 
     public function __construct(array $data = [])
     {
         if (isset($data['displayName'])) {
-            $this->displaName = $data['displayName'];
+            $this->displayName = $data['displayName'];
         }
         if (isset($data['domainName'])) {
             $this->domainName = $data['domainName'];
@@ -19,12 +21,12 @@ final class CreateApplePaySession
 
     public function getDisplayName(): string
     {
-        return $this->displaName;
+        return $this->displayName;
     }
 
     public function setDisplayName(string $displayName): self
     {
-        $this->displaName = $displayName;
+        $this->displayName = $displayName;
         return $this;
     }
 
@@ -37,5 +39,13 @@ final class CreateApplePaySession
     {
         $this->domainName = $domainName;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'displayName' => $this->displayName,
+            'domainName' => $this->domainName
+        ];
     }
 }

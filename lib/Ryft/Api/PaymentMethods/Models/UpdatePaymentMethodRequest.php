@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\PaymentMethods\Models;
 
-final class UpdatePaymentMethodRequest
+use Ryft\Arrayable;
+
+final class UpdatePaymentMethodRequest implements Arrayable
 {
     private $billingAddress = null;
 
@@ -22,5 +24,12 @@ final class UpdatePaymentMethodRequest
     {
         $this->billingAddress = $billingAddress;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'billingAddress' => $this->billingAddress
+        ];
     }
 }

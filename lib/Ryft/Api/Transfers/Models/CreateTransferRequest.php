@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Transfers\Models;
 
-final class CreateTransferRequest
+use Ryft\Arrayable;
+
+final class CreateTransferRequest implements Arrayable
 {
     private $amount;
     private $currency;
@@ -79,5 +81,17 @@ final class CreateTransferRequest
     public function setMetadata(?array $metadata): void
     {
         $this->metadata = $metadata;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'amount' => $this->amount,
+            'currency' => $this->currency,
+            'source' => $this->source,
+            'destination' => $this->destination,
+            'reason' => $this->reason,
+            'metadata' => $this->metadata
+        ];
     }
 }
