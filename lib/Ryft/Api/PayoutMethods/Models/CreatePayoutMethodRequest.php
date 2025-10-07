@@ -2,9 +2,10 @@
 
 namespace Ryft\Api\PayoutMethods\Models;
 
+use Ryft\Api\AbstractRequest;
 use Ryft\Arrayable;
 
-final class CreatePayoutMethodRequest implements Arrayable
+final class CreatePayoutMethodRequest extends AbstractRequest implements Arrayable
 {
     private $type = null;
     private $displayName = null;

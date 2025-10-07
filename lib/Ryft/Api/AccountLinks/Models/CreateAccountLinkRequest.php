@@ -2,9 +2,10 @@
 
 namespace Ryft\Api\AccountLinks\Models;
 
+use Ryft\Api\AbstractRequest;
 use Ryft\Arrayable;
 
-final class CreateAccountLinkRequest implements Arrayable
+final class CreateAccountLinkRequest extends AbstractRequest implements Arrayable
 {
     private $accountId;
     private $redirectUrl;

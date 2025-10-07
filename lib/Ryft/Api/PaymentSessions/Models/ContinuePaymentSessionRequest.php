@@ -2,9 +2,10 @@
 
 namespace Ryft\Api\PaymentSessions\Models;
 
+use Ryft\Api\AbstractRequest;
 use Ryft\Arrayable;
 
-final class ContinuePaymentSessionRequest implements Arrayable
+final class ContinuePaymentSessionRequest extends AbstractRequest implements Arrayable
 {
     private $clientSecret = null;
     private $threeDs = null;

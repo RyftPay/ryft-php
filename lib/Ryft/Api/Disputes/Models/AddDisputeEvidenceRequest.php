@@ -2,9 +2,10 @@
 
 namespace Ryft\Api\Disputes\Models;
 
+use Ryft\Api\AbstractRequest;
 use Ryft\Arrayable;
 
-final class AddDisputeEvidenceRequest implements Arrayable
+final class AddDisputeEvidenceRequest extends AbstractRequest implements Arrayable
 {
     private $text = null;
     private $files = null;

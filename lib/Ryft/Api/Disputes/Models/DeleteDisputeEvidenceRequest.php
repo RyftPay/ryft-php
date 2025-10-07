@@ -2,9 +2,10 @@
 
 namespace Ryft\Api\Disputes\Models;
 
+use Ryft\Api\AbstractRequest;
 use Ryft\Arrayable;
 
-final class DeleteDisputeEvidenceRequest implements Arrayable
+final class DeleteDisputeEvidenceRequest extends AbstractRequest implements Arrayable
 {
     private $text = null;
     private $files = null;

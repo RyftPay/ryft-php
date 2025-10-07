@@ -2,9 +2,10 @@
 
 namespace Ryft\Api\PaymentSessions\Models;
 
+use Ryft\Api\AbstractRequest;
 use Ryft\Arrayable;
 
-final class RefundPaymentSessionRequest implements Arrayable
+final class RefundPaymentSessionRequest extends AbstractRequest implements Arrayable
 {
     private $amount = null;
     private $reason = null;

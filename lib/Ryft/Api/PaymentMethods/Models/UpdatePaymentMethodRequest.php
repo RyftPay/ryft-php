@@ -2,9 +2,10 @@
 
 namespace Ryft\Api\PaymentMethods\Models;
 
+use Ryft\Api\AbstractRequest;
 use Ryft\Arrayable;
 
-final class UpdatePaymentMethodRequest implements Arrayable
+final class UpdatePaymentMethodRequest extends AbstractRequest implements Arrayable
 {
     private $billingAddress = null;
 

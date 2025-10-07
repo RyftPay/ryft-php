@@ -2,9 +2,10 @@
 
 namespace Ryft\Api\PaymentSessions\Models;
 
+use Ryft\Api\AbstractRequest;
 use Ryft\Arrayable;
 
-final class UpdatePaymentSessionRequest implements Arrayable
+final class UpdatePaymentSessionRequest extends AbstractRequest implements Arrayable
 {
     private $amount = null;
     private $customerEmail = null;

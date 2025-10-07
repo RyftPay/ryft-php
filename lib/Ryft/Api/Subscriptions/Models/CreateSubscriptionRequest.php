@@ -2,9 +2,10 @@
 
 namespace Ryft\Api\Subscriptions\Models;
 
+use Ryft\Api\AbstractRequest;
 use Ryft\Arrayable;
 
-final class CreateSubscriptionRequest implements Arrayable
+final class CreateSubscriptionRequest extends AbstractRequest implements Arrayable
 {
     private $customer;
     private $price;

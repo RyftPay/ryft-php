@@ -2,9 +2,10 @@
 
 namespace Ryft\Api\Files\Models;
 
+use Ryft\Api\AbstractRequest;
 use Ryft\Arrayable;
 
-final class CreateFileRequest implements Arrayable
+final class CreateFileRequest extends AbstractRequest implements Arrayable
 {
     private $filePath;
     private $category;

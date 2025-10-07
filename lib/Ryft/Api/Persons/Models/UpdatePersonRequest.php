@@ -2,9 +2,10 @@
 
 namespace Ryft\Api\Persons\Models;
 
+use Ryft\Api\AbstractRequest;
 use Ryft\Arrayable;
 
-final class UpdatePersonRequest implements Arrayable
+final class UpdatePersonRequest extends AbstractRequest implements Arrayable
 {
     private $firstName = null;
     private $middleNames = null;
