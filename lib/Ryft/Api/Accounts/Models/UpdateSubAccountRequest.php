@@ -3,9 +3,8 @@
 namespace Ryft\Api\Accounts\Models;
 
 use Ryft\Api\AbstractRequest;
-use Ryft\Arrayable;
 
-final class UpdateSubAccountRequest extends AbstractRequest implements Arrayable
+final class UpdateSubAccountRequest extends AbstractRequest
 {
     private $entityType = null;
     private $business = null;

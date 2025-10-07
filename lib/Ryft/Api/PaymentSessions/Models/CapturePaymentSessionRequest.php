@@ -3,9 +3,8 @@
 namespace Ryft\Api\PaymentSessions\Models;
 
 use Ryft\Api\AbstractRequest;
-use Ryft\Arrayable;
 
-final class CapturePaymentSessionRequest extends AbstractRequest implements Arrayable
+final class CapturePaymentSessionRequest extends AbstractRequest
 {
     private $amount = null;
     private $captureType = null;

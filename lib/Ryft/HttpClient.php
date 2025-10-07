@@ -2,6 +2,7 @@
 
 namespace Ryft;
 
+use Ryft\Api\AbstractRequest;
 use Ryft\Exceptions\RyftException;
 
 final class HttpClient implements HttpInterface
@@ -33,7 +34,7 @@ final class HttpClient implements HttpInterface
 
     public function request(string $method, string $path, ?array $params = null, $body = null, ?string $account = null): array
     {
-        if (!is_array($body) && $body instanceof Arrayable) {
+        if (!is_array($body) && $body instanceof AbstractRequest) {
             $body = $body->toArray();
         }
 

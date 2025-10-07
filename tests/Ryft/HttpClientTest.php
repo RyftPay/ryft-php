@@ -3,7 +3,7 @@
 namespace Ryft\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Ryft\Arrayable;
+use Ryft\Api\AbstractRequest;
 use Ryft\CurlClient;
 use Ryft\HttpClient;
 
@@ -13,7 +13,7 @@ class HttpClientTest extends TestCase
     {
         $httpClient = new HttpClient('', '');
 
-        $arrayableRequest = $this->createMock(Arrayable::class);
+        $arrayableRequest = $this->createMock(AbstractRequest::class);
 
         $arrayableRequest->expects($this->once())
             ->method('toArray')

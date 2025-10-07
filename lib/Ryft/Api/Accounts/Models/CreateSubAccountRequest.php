@@ -3,9 +3,8 @@
 namespace Ryft\Api\Accounts\Models;
 
 use Ryft\Api\AbstractRequest;
-use Ryft\Arrayable;
 
-final class CreateSubAccountRequest extends AbstractRequest implements Arrayable
+final class CreateSubAccountRequest extends AbstractRequest
 {
     private $onboardingFlow = null;
     private $email = null;

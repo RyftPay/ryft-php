@@ -3,9 +3,8 @@
 namespace Ryft\Api\ApplePay\Models;
 
 use Ryft\Api\AbstractRequest;
-use Ryft\Arrayable;
 
-final class RegisterApplePayDomainRequest extends AbstractRequest implements Arrayable
+final class RegisterApplePayDomainRequest extends AbstractRequest
 {
     private $domainName;
 

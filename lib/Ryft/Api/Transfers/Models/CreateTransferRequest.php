@@ -3,9 +3,8 @@
 namespace Ryft\Api\Transfers\Models;
 
 use Ryft\Api\AbstractRequest;
-use Ryft\Arrayable;
 
-final class CreateTransferRequest extends AbstractRequest implements Arrayable
+final class CreateTransferRequest extends AbstractRequest
 {
     private $amount;
     private $currency;
