@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Subscriptions\Models;
 
-final class CreateSubscriptionRequest
+use Ryft\Api\AbstractRequest;
+
+final class CreateSubscriptionRequest extends AbstractRequest
 {
     private $customer;
     private $price;
@@ -103,5 +105,19 @@ final class CreateSubscriptionRequest
     public function setPaymentSettings(?array $paymentSettings): void
     {
         $this->paymentSettings = $paymentSettings;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'customer' => $this->customer,
+            'price' => $this->price,
+            'paymentMethod' => $this->paymentMethod,
+            'description' => $this->description,
+            'billingCycleTimestamp' => $this->billingCycleTimestamp,
+            'metadata' => $this->metadata,
+            'shippingDetails' => $this->shippingDetails,
+            'paymentSettings' => $this->paymentSettings
+        ];
     }
 }

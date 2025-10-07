@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Customers\Models;
 
-final class UpdateCustomerRequest
+use Ryft\Api\AbstractRequest;
+
+final class UpdateCustomerRequest extends AbstractRequest
 {
     private $firstName = null;
     private $lastName = null;
@@ -82,5 +84,16 @@ final class UpdateCustomerRequest
     {
         $this->metadata = $metadata;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'homePhoneNumber' => $this->homePhoneNumber,
+            'mobilePhoneNumber' => $this->mobilePhoneNumber,
+            'metadata' => $this->metadata
+        ];
     }
 }

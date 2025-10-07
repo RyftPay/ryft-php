@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\ApplePay\Models;
 
-final class RegisterApplePayDomainRequest
+use Ryft\Api\AbstractRequest;
+
+final class RegisterApplePayDomainRequest extends AbstractRequest
 {
     private $domainName;
 
@@ -22,5 +24,12 @@ final class RegisterApplePayDomainRequest
     {
         $this->domainName = $domainName;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'domainName' => $this->domainName,
+        ];
     }
 }

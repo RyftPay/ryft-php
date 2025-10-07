@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\PayoutMethods\Models;
 
-final class CreatePayoutMethodRequest
+use Ryft\Api\AbstractRequest;
+
+final class CreatePayoutMethodRequest extends AbstractRequest
 {
     private $type = null;
     private $displayName = null;
@@ -82,5 +84,16 @@ final class CreatePayoutMethodRequest
     {
         $this->bankAccount = $bankAccount;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'type' => $this->type,
+            'displayName' => $this->displayName,
+            'currency' => $this->currency,
+            'country' => $this->country,
+            'bankAccount' => $this->bankAccount
+        ];
     }
 }

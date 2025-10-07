@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\AccountLinks\Models;
 
-final class CreateAccountLinkRequest
+use Ryft\Api\AbstractRequest;
+
+final class CreateAccountLinkRequest extends AbstractRequest
 {
     private $accountId;
     private $redirectUrl;
@@ -37,5 +39,13 @@ final class CreateAccountLinkRequest
     {
         $this->redirectUrl = $redirectUrl;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'accountId' => $this->accountId,
+            'redirectUrl' => $this->redirectUrl
+        ];
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Files\Models;
 
-final class CreateFileRequest
+use Ryft\Api\AbstractRequest;
+
+final class CreateFileRequest extends AbstractRequest
 {
     private $filePath;
     private $category;
@@ -90,5 +92,14 @@ final class CreateFileRequest
             $extension = strtolower(pathinfo($this->filePath, PATHINFO_EXTENSION));
             throw new \InvalidArgumentException('Unsupported file type: ' . $extension);
         }
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'filePath' => $this->filePath,
+            'category' => $this->category,
+            'metadata' => $this->metadata,
+        ];
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Accounts\Models;
 
-final class UpdateSubAccountRequest
+use Ryft\Api\AbstractRequest;
+
+final class UpdateSubAccountRequest extends AbstractRequest
 {
     private $entityType = null;
     private $business = null;
@@ -97,5 +99,16 @@ final class UpdateSubAccountRequest
     {
         $this->termsOfService = $termsOfService;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'entityType' => $this->entityType,
+            'business' => $this->business,
+            'individual' => $this->individual,
+            'metadata' => $this->metadata,
+            'termsOfService' => $this->termsOfService,
+        ];
     }
 }

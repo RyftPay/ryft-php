@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Accounts\Models;
 
-final class CreateSubAccountRequest
+use Ryft\Api\AbstractRequest;
+
+final class CreateSubAccountRequest extends AbstractRequest
 {
     private $onboardingFlow = null;
     private $email = null;
@@ -127,5 +129,18 @@ final class CreateSubAccountRequest
     {
         $this->termsOfService = $termsOfService;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'onboardingFlow' => $this->onboardingFlow,
+            'email' => $this->email,
+            'entityType' => $this->entityType,
+            'business' => $this->business,
+            'individual' => $this->individual,
+            'metadata' => $this->metadata,
+            'termsOfService' => $this->termsOfService
+        ];
     }
 }

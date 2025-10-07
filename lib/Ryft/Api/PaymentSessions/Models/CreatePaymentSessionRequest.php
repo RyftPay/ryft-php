@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\PaymentSessions\Models;
 
-final class CreatePaymentSessionRequest
+use Ryft\Api\AbstractRequest;
+
+final class CreatePaymentSessionRequest extends AbstractRequest
 {
     private $amount = null;
     private $currency = null;
@@ -83,6 +85,31 @@ final class CreatePaymentSessionRequest
         if (isset($data['paymentSettings'])) {
             $this->paymentSettings = $data['paymentSettings'];
         }
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'amount' => $this->amount,
+            'currency' => $this->currency,
+            'customerEmail' => $this->customerEmail,
+            'customerDetails' => $this->customerDetails,
+            'platformFee' => $this->platformFee,
+            'splits' => $this->splits,
+            'captureFlow' => $this->captureFlow,
+            'paymentType' => $this->paymentType,
+            'entryMode' => $this->entryMode,
+            'previousPayment' => $this->previousPayment,
+            'rebillingDetail' => $this->rebillingDetail,
+            'verifyAccount' => $this->verifyAccount,
+            'shippingDetails' => $this->shippingDetails,
+            'orderDetails' => $this->orderDetails,
+            'statementDescriptor' => $this->statementDescriptor,
+            'metadata' => $this->metadata,
+            'returnUrl' => $this->returnUrl,
+            'attemptPayment' => $this->attemptPayment,
+            'paymentSettings' => $this->paymentSettings
+        ];
     }
 
     public function getAmount(): ?int

@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\PaymentSessions\Models;
 
-final class AttemptPaymentSessionRequest
+use Ryft\Api\AbstractRequest;
+
+final class AttemptPaymentSessionRequest extends AbstractRequest
 {
     private $clientSecret = null;
     private $paymentMethodType = null;
@@ -157,5 +159,21 @@ final class AttemptPaymentSessionRequest
     {
         $this->threeDsRequestDetails = $threeDsRequestDetails;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'clientSecret' => $this->clientSecret,
+            'paymentMethodType' => $this->paymentMethodType,
+            'cardDetails' => $this->cardDetails,
+            'walletDetails' => $this->walletDetails,
+            'paymentMethod' => $this->paymentMethod,
+            'paymentMethodOptions' => $this->paymentMethodOptions,
+            'billingAddress' => $this->billingAddress,
+            'customerDetails' => $this->customerDetails,
+            'shippingDetails' => $this->shippingDetails,
+            'threeDsRequestDetails' => $this->threeDsRequestDetails,
+        ];
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Accounts\Models;
 
-final class CreateManualPayoutRequest
+use Ryft\Api\AbstractRequest;
+
+final class CreateManualPayoutRequest extends AbstractRequest
 {
     private $amount;
     private $currency;
@@ -67,5 +69,15 @@ final class CreateManualPayoutRequest
     {
         $this->metadata = $metadata;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'amount' => $this->amount,
+            'currency' => $this->currency,
+            'payoutMethodId' => $this->payoutMethodId,
+            'metadata' => $this->metadata
+        ];
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\PaymentSessions\Models;
 
-final class CapturePaymentSessionRequest
+use Ryft\Api\AbstractRequest;
+
+final class CapturePaymentSessionRequest extends AbstractRequest
 {
     private $amount = null;
     private $captureType = null;
@@ -82,5 +84,15 @@ final class CapturePaymentSessionRequest
     {
         $this->settings = $settings;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'amount' => $this->amount,
+            'captureType' => $this->captureType,
+            'platformFee' => $this->platformFee,
+            'splits' => $this->splits
+        ];
     }
 }

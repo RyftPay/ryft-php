@@ -2,7 +2,9 @@
 
 namespace Ryft\Api\Disputes\Models;
 
-final class DeleteDisputeEvidenceRequest
+use Ryft\Api\AbstractRequest;
+
+final class DeleteDisputeEvidenceRequest extends AbstractRequest
 {
     private $text = null;
     private $files = null;
@@ -37,5 +39,13 @@ final class DeleteDisputeEvidenceRequest
     {
         $this->files = $files;
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'text' => $this->text,
+            'files' => $this->files
+        ];
     }
 }
