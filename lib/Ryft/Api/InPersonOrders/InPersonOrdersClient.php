@@ -1,35 +1,39 @@
 <?php
 
-namespace Ryft\Api\BalanceTransactions;
+namespace Ryft\Api\InPersonOrders;
 
-use Ryft\HttpInterface;
-
-final class BalanceTransactionsClient implements BalanceTransactionsInterface
+final class InPersonOrdersClient implements InPersonOrdersInterface
 {
     private $httpClient;
-    private $basePath = '/balance-transactions';
+    private $basePath = '/in-person/orders';
 
-    public function __construct(HttpInterface $httpClient)
+    public function __construct($httpClient)
     {
         $this->httpClient = $httpClient;
     }
 
     public function list(
+        ?bool $ascending = null,
         ?int $limit = null,
         ?string $startsAfter = null,
-        ?string $payoutId = null,
         ?string $account = null
     ): array {
         $params = [];
+        if ($ascending !== null) {
+            $params['ascending'] = $ascending;
+        }
         if ($limit !== null) {
             $params['limit'] = $limit;
         }
         if ($startsAfter !== null) {
             $params['startsAfter'] = $startsAfter;
         }
-        if ($payoutId !== null) {
-            $params['payoutId'] = $payoutId;
-        }
+
         return $this->httpClient->request('GET', $this->basePath, $params, null, $account);
+    }
+
+    public function get(string $id, ?string $account = null): array
+    {
+        return $this->httpClient->request('GET', $this->basePath . '/' . $id, [], null, $account);
     }
 }

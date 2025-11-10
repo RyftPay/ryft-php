@@ -15,7 +15,7 @@ final class MockData
         "available" => [
             "amount" => 500
         ],
-        "lastUpdatedTimestamp" =>1470989538
+        "lastUpdatedTimestamp" => 1470989538
     ];
 
     private const MOCK_BALANCES = [
@@ -29,4 +29,3 @@ final class MockData
         return self::MOCK_BALANCES;
     }
 }
-
