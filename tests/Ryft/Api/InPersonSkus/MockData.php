@@ -6,22 +6,21 @@ final class MockData
 {
     private const MOCK_SKU = [
         "id" => "ipsku_01FCTS1XMKH9FF43CAFA4CXT3P",
-        "type" => "InPersonSku",
+        "name" => "BBPOS WisePad 3 (EU)",
         "productId" => "ippd_01FCTS1XMKH9FF43CAFA4CXT3P",
-        "country" => "EU",
-        "price" => [
-            "amount" => 5000,
-            "currency" => "GBP"
-        ],
-        "createdTimestamp" => 1621234567
+        "country" => "GB",
+        "totalAmount" => 5000,
+        "currency" => "GBP",
+        "status" => "Available",
+        "createdTimestamp" => 1621234567,
+        "lastUpdatedTimestamp" => 1621234567
     ];
 
     private const MOCK_SKU_LIST = [
-        "data" => [
+        "items" => [
             self::MOCK_SKU
         ],
-        "hasMore" => false,
-        "lastId" => "ipsku_01FCTS1XMKH9FF43CAFA4CXT3P"
+        "paginationToken" => null
     ];
 
     public static function getSku(): array

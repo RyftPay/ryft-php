@@ -6,11 +6,15 @@ final class MockData
 {
     private const MOCK_TERMINAL = [
         "id" => "tml_01FCTS1XMKH9FF43CAFA4CXT3P",
-        "type" => "InPersonTerminal",
-        "serialNumber" => "WP3-12345678",
-        "locationId" => "iploc_01FCTS1XMKH9FF43CAFA4CXT3P",
         "name" => "Terminal 1",
-        "status" => "Active",
+        "location" => [
+            "id" => "iploc_01FCTS1XMKH9FF43CAFA4CXT3P"
+        ],
+        "device" => [
+            "type" => "BBPOS WisePad 3",
+            "serialNumber" => "WP3-12345678"
+        ],
+        "action" => null,
         "metadata" => [
             "deviceType" => "WisePad3"
         ],
@@ -19,11 +23,10 @@ final class MockData
     ];
 
     private const MOCK_TERMINAL_LIST = [
-        "data" => [
+        "items" => [
             self::MOCK_TERMINAL
         ],
-        "hasMore" => false,
-        "lastId" => "tml_01FCTS1XMKH9FF43CAFA4CXT3P"
+        "paginationToken" => null
     ];
 
     private const MOCK_DELETED_RESPONSE = [
@@ -33,7 +36,22 @@ final class MockData
 
     private const MOCK_ACTION_RESPONSE = [
         "id" => "tml_01FCTS1XMKH9FF43CAFA4CXT3P",
-        "status" => "Processing"
+        "action" => [
+            "type" => "Transaction",
+            "status" => "InProgress",
+            "id" => "tmlact_01K7HNYENCZF6A784V5T625108",
+            "transaction" => [
+                "type" => "Payment",
+                "paymentSessionId" => "ps_01FCTS1XMKH9FF43CAFA4CXT3P",
+                "amounts" => [
+                    "requested" => 1000
+                ],
+                "currency" => "GBP",
+                "settings" => [
+                    "receiptPrintingSource" => "PointOfSale"
+                ]
+            ]
+        ]
     ];
 
     public static function getTerminal(): array
@@ -87,10 +105,18 @@ final class MockData
             ],
             "currency" => "GBP",
             "paymentSession" => [
-                "id" => "ps_01FCTS1XMKH9FF43CAFA4CXT3P"
+                "platformFee" => 50,
+                "metadata" => [
+                    "orderId" => "ORDER-123"
+                ],
+                "paymentSettings" => [
+                    "paymentMethodOptions" => [
+                        "disabled" => ["Amex"]
+                    ]
+                ]
             ],
             "settings" => [
-                "skipReceipt" => false
+                "receiptPrintingSource" => "PointOfSale"
             ]
         ];
     }
@@ -104,7 +130,7 @@ final class MockData
             "amount" => 500,
             "refundPlatformFee" => false,
             "settings" => [
-                "skipReceipt" => false
+                "receiptPrintingSource" => "PointOfSale"
             ]
         ];
     }

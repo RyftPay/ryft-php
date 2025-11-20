@@ -9,10 +9,12 @@ final class MockData
         "type" => "InPersonLocation",
         "name" => "Main Store London",
         "address" => [
-            "line1" => "123 High Street",
+            "lineOne" => "123 High Street",
+            "lineTwo" => null,
             "city" => "London",
             "country" => "GB",
-            "postalCode" => "SW1A 1AA"
+            "postalCode" => "SW1A 1AA",
+            "region" => null
         ],
         "geoCoordinates" => [
             "latitude" => 51.5074,
@@ -26,11 +28,10 @@ final class MockData
     ];
 
     private const MOCK_LOCATION_LIST = [
-        "data" => [
+        "items" => [
             self::MOCK_LOCATION
         ],
-        "hasMore" => false,
-        "lastId" => "iploc_01FCTS1XMKH9FF43CAFA4CXT3P"
+        "paginationToken" => null
     ];
 
     private const MOCK_DELETED_RESPONSE = [
@@ -58,10 +59,12 @@ final class MockData
         return [
             "name" => "Main Store London",
             "address" => [
-                "line1" => "123 High Street",
+                "lineOne" => "123 High Street",
+                "lineTwo" => null,
                 "city" => "London",
                 "country" => "GB",
-                "postalCode" => "SW1A 1AA"
+                "postalCode" => "SW1A 1AA",
+                "region" => null
             ],
             "geoCoordinates" => [
                 "latitude" => 51.5074,
