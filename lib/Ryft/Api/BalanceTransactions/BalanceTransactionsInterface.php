@@ -11,4 +11,3 @@ interface BalanceTransactionsInterface
         ?string $account = null
     ): array;
 }
-

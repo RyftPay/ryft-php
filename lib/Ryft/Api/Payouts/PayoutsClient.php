@@ -50,6 +50,6 @@ final class PayoutsClient implements PayoutsInterface
 
     public function get(string $id, string $payoutId): array
     {
-        return $this->httpClient->request('GET', $this->basePath . '/' . $id . $this->payoutsPath . '/'. $payoutId);
+        return $this->httpClient->request('GET', $this->basePath . '/' . $id . $this->payoutsPath . '/' . $payoutId);
     }
 }

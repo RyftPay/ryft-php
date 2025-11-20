@@ -14,7 +14,8 @@ final class BalancesClient implements BalancesInterface
         $this->httpClient = $httpClient;
     }
 
-    public function list(string $currency, ?string $account = null): array {
+    public function list(string $currency, ?string $account = null): array
+    {
         $params = [
             'currency' => $currency,
         ];
