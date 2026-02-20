@@ -13,7 +13,7 @@ composer install ryftpay/ryft-php
 
 ## Usage
     
-The SDK must be configured with your account's secret key, available in the Ryft Dashboard. The SDK will automatically determine the environment based on the provided key. For example, `sk_sandbox...` will point to `sandbox`, while `sk_live` will point to `production`.
+The SDK must be configured with your account's secret key, available in the Ryft Dashboard. The SDK will automatically determine the environment based on the provided key. For example, `sk_sandbox...` will point to `sandbox`, while `sk_` will point to `production`.
 
 ### Importing the SDK
 
