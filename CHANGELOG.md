@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0
+
+This release drops support for PHP 7 (now end-of-life)
+ - the minimum supported PHP version is now 8.0
+
 ## 1.1.0
 
 This release includes support for our new InPerson and Terminal APIs
