@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.1
+
+This release fixes base URL detection so production keys route to the live API
+ - production keys (`sk_...`) previously routed to the sandbox environment
+ - invalid keys (no `sk_` prefix) now throw an `InvalidArgumentException`
+
 ## 2.0.0
 
 This release drops support for PHP 7 (now end-of-life)
