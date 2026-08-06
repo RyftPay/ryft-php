@@ -152,6 +152,22 @@ final class ConversionsClientTest extends TestCase
         $this->assertEquals($conversion, $resp);
     }
 
+    public function testGetWithSellSideFees(): void
+    {
+        $conversionId = "con_01FCTS1XMKH9FF43CAFA4CXT3Q";
+        $conversion = MockData::getConversionWithSellSideFees();
+        $httpClient = $this->createMock(HttpInterface::class);
+        $client = new ConversionsClient($httpClient);
+
+        $httpClient->expects($this->any())
+            ->method("request")
+            ->with('GET', "/conversions/" . $conversionId, [], null, null)
+            ->willReturn($conversion);
+
+        $resp = $client->get($conversionId);
+        $this->assertEquals($conversion, $resp);
+    }
+
     public function testGetWithAccount(): void
     {
         $conversionId = "con_01FCTS1XMKH9FF43CAFA4CXT3P";
@@ -172,6 +188,26 @@ final class ConversionsClientTest extends TestCase
     public function testGetRate(): void
     {
         $rate = MockData::getConversionRate();
+        $httpClient = $this->createMock(HttpInterface::class);
+        $client = new ConversionsClient($httpClient);
+        $expectedParams = [
+            'sellCurrency' => 'GBP',
+            'buyCurrency' => 'USD',
+            'amount' => 1000
+        ];
+
+        $httpClient->expects($this->any())
+            ->method("request")
+            ->with('GET', "/conversions/rate", $expectedParams, null, null)
+            ->willReturn($rate);
+
+        $resp = $client->getRate('GBP', 'USD', 1000);
+        $this->assertEquals($rate, $resp);
+    }
+
+    public function testGetRateWithSellSideFees(): void
+    {
+        $rate = MockData::getConversionRateWithSellSideFees();
         $httpClient = $this->createMock(HttpInterface::class);
         $client = new ConversionsClient($httpClient);
         $expectedParams = [

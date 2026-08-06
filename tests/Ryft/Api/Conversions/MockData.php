@@ -61,6 +61,39 @@ final class MockData
         "createdTimestamp" => 1470989538
     ];
 
+    private const MOCK_CONVERSION_WITH_SELL_SIDE_FEES = [
+        "id" => "con_01FCTS1XMKH9FF43CAFA4CXT3Q",
+        "sell" => [
+            "amount" => 1000,
+            "currency" => "GBP",
+            "fees" => [
+                "ryft" => [
+                    "amount" => 10
+                ],
+                "platform" => [
+                    "amount" => 5,
+                    "ryftFee" => [
+                        "amount" => 2
+                    ]
+                ]
+            ]
+        ],
+        "buy" => [
+            "amount" => 1235,
+            "currency" => "USD"
+        ],
+        "rate" => 1.247,
+        "status" => "Settled",
+        "reason" => "Converting GBP takings to pay USD suppliers",
+        "estimatedSettlementDate" => "2024-03-15",
+        "settledTimestamp" => 1470989600,
+        "createdBy" => [
+            "id" => "ac_b83f2653-06d7-44a9-a548-5825e8186004",
+            "name" => "Acme Corp"
+        ],
+        "createdTimestamp" => 1470989538
+    ];
+
     private const MOCK_IN_PROGRESS_CONVERSION = [
         "id" => "con_01FCTS1XMKH9FF43CAFA4CXT3P",
         "sell" => [
@@ -105,6 +138,30 @@ final class MockData
         "estimatedSettlementDate" => "2024-03-15"
     ];
 
+    private const MOCK_CONVERSION_RATE_WITH_SELL_SIDE_FEES = [
+        "sell" => [
+            "amount" => 1000,
+            "currency" => "GBP",
+            "fees" => [
+                "ryft" => [
+                    "amount" => 10
+                ],
+                "platform" => [
+                    "amount" => 5,
+                    "ryftFee" => [
+                        "amount" => 2
+                    ]
+                ]
+            ]
+        ],
+        "buy" => [
+            "amount" => 1235,
+            "currency" => "USD"
+        ],
+        "rate" => 1.247,
+        "estimatedSettlementDate" => "2024-03-15"
+    ];
+
     public static function getCreateConversionRequest(): array
     {
         return self::MOCK_CREATE_CONVERSION_REQUEST;
@@ -120,6 +177,11 @@ final class MockData
         return self::MOCK_CONVERSION;
     }
 
+    public static function getConversionWithSellSideFees(): array
+    {
+        return self::MOCK_CONVERSION_WITH_SELL_SIDE_FEES;
+    }
+
     public static function getInProgressConversion(): array
     {
         return self::MOCK_IN_PROGRESS_CONVERSION;
@@ -133,5 +195,10 @@ final class MockData
     public static function getConversionRate(): array
     {
         return self::MOCK_CONVERSION_RATE;
+    }
+
+    public static function getConversionRateWithSellSideFees(): array
+    {
+        return self::MOCK_CONVERSION_RATE_WITH_SELL_SIDE_FEES;
     }
 }
