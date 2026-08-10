@@ -9,3 +9,4 @@ vendor/*
 .DS_*
 composer.lock
 .phpactor.json
+CLAUDE.md
