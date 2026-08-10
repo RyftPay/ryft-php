@@ -8,7 +8,7 @@ class Utils
 {
     private const LIVE_URL = 'https://api.ryftpay.com/v1';
     private const SANDBOX_URL = 'https://sandbox-api.ryftpay.com/v1';
-    
+
     private const SANDBOX_PREFIX = 'sk_sandbox';
     private const LIVE_PREFIX = 'sk_';
 
