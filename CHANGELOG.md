@@ -4,10 +4,6 @@
 
 This release includes support for our new Conversions API
  - create, retrieve and list conversions, and fetch indicative conversion rates
- - FX fees are returned on whichever side of the conversion they were charged (`sell.fees` or `buy.fees`)
-
-Useful docs:
- - https://api-reference.ryftpay.com/#tag/Conversions
 
 ## 2.0.1
 
