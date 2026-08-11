@@ -27,5 +27,4 @@ class UtilsTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         Utils::determineBaseUrl($randomKey);
     }
-
 }

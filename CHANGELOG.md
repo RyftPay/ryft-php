@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.0
+
+This release includes support for our new Conversions API
+ - create, retrieve and list conversions, and fetch indicative conversion rates
+
 ## 2.0.1
 
 This release fixes base URL detection so production keys route to the live API

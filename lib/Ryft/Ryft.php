@@ -7,6 +7,7 @@ use Ryft\Api\AccountLinks\AccountLinksClient;
 use Ryft\Api\ApplePay\ApplePayClient;
 use Ryft\Api\Balances\BalancesClient;
 use Ryft\Api\BalanceTransactions\BalanceTransactionsClient;
+use Ryft\Api\Conversions\ConversionsClient;
 use Ryft\Api\Customers\CustomersClient;
 use Ryft\Api\Disputes\DisputesClient;
 use Ryft\Api\Events\EventsClient;
@@ -35,6 +36,7 @@ final class Ryft
     public $accountLinks;
     public $balances;
     public $balanceTransactions;
+    public $conversions;
     public $customers;
     public $disputes;
     public $events;
@@ -74,6 +76,7 @@ final class Ryft
         $this->applePay = new ApplePayClient($httpClient);
         $this->balances = new BalancesClient($httpClient);
         $this->balanceTransactions = new BalanceTransactionsClient($httpClient);
+        $this->conversions = new ConversionsClient($httpClient);
         $this->customers = new CustomersClient($httpClient);
         $this->disputes = new DisputesClient($httpClient);
         $this->events = new EventsClient($httpClient);

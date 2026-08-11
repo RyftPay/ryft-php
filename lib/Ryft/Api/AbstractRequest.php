@@ -9,14 +9,14 @@ abstract class AbstractRequest implements \JsonSerializable
      *
      * @return array
      */
-    abstract function toArray(): array;
+    abstract public function toArray(): array;
 
     /**
      * @description Return a json serializable representation of the request
      *
      * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return $this->toArray();
     }
