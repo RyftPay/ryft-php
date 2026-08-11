@@ -16,20 +16,8 @@ final class MockData
         "reason" => "Paying EUR suppliers"
     ];
 
-    private const MOCK_CREATE_CONVERSION_REQUEST_FIXED_SELL = [
-        "sell" => [
-            "currency" => "GBP",
-            "amount" => 500
-        ],
-        "buy" => [
-            "currency" => "EUR"
-        ],
-        "termAgreement" => true,
-        "fixedSide" => "Sell"
-    ];
-
     private const MOCK_CONVERSION = [
-        "id" => "con_01FCTS1XMKH9FF43CAFA4CXT3P",
+        "id" => "cv_01FCTS1XMKH9FF43CAFA4CXT3P",
         "sell" => [
             "amount" => 1000,
             "currency" => "GBP"
@@ -40,12 +28,6 @@ final class MockData
             "fees" => [
                 "ryft" => [
                     "amount" => 10
-                ],
-                "platform" => [
-                    "amount" => 5,
-                    "ryftFee" => [
-                        "amount" => 2
-                    ]
                 ]
             ]
         ],
@@ -55,21 +37,18 @@ final class MockData
         "estimatedSettlementDate" => "2024-03-15",
         "settledTimestamp" => 1470989600,
         "createdBy" => [
-            "id" => "ac_b83f2653-06d7-44a9-a548-5825e8186004",
-            "name" => "Acme Corp"
+            "id" => "usr_01FCTS1XMKH9FF43CAFA4CXT3P",
+            "name" => "John Smith"
         ],
         "createdTimestamp" => 1470989538
     ];
 
     private const MOCK_CONVERSION_WITH_SELL_SIDE_FEES = [
-        "id" => "con_01FCTS1XMKH9FF43CAFA4CXT3Q",
+        "id" => "cv_01FCTS1XMKH9FF43CAFA4CXT3Q",
         "sell" => [
             "amount" => 1000,
             "currency" => "GBP",
             "fees" => [
-                "ryft" => [
-                    "amount" => 10
-                ],
                 "platform" => [
                     "amount" => 5,
                     "ryftFee" => [
@@ -79,7 +58,7 @@ final class MockData
             ]
         ],
         "buy" => [
-            "amount" => 1235,
+            "amount" => 1241,
             "currency" => "USD"
         ],
         "rate" => 1.247,
@@ -88,14 +67,14 @@ final class MockData
         "estimatedSettlementDate" => "2024-03-15",
         "settledTimestamp" => 1470989600,
         "createdBy" => [
-            "id" => "ac_b83f2653-06d7-44a9-a548-5825e8186004",
-            "name" => "Acme Corp"
+            "id" => "usr_01FCTS1XMKH9FF43CAFA4CXT3P",
+            "name" => "John Smith"
         ],
         "createdTimestamp" => 1470989538
     ];
 
     private const MOCK_IN_PROGRESS_CONVERSION = [
-        "id" => "con_01FCTS1XMKH9FF43CAFA4CXT3P",
+        "id" => "cv_01FCTS1XMKH9FF43CAFA4CXT3P",
         "sell" => [
             "amount" => 1000,
             "currency" => "GBP"
@@ -111,7 +90,7 @@ final class MockData
         "items" => [
             self::MOCK_CONVERSION
         ],
-        "paginationToken" => "con_01FCTS1XMKH9FF43CAFA4CXT3P"
+        "paginationToken" => "cv_01FCTS1XMKH9FF43CAFA4CXT3P"
     ];
 
     private const MOCK_CONVERSION_RATE = [
@@ -125,12 +104,6 @@ final class MockData
             "fees" => [
                 "ryft" => [
                     "amount" => 10
-                ],
-                "platform" => [
-                    "amount" => 5,
-                    "ryftFee" => [
-                        "amount" => 2
-                    ]
                 ]
             ]
         ],
@@ -143,9 +116,6 @@ final class MockData
             "amount" => 1000,
             "currency" => "GBP",
             "fees" => [
-                "ryft" => [
-                    "amount" => 10
-                ],
                 "platform" => [
                     "amount" => 5,
                     "ryftFee" => [
@@ -155,7 +125,7 @@ final class MockData
             ]
         ],
         "buy" => [
-            "amount" => 1235,
+            "amount" => 1241,
             "currency" => "USD"
         ],
         "rate" => 1.247,
@@ -165,11 +135,6 @@ final class MockData
     public static function getCreateConversionRequest(): array
     {
         return self::MOCK_CREATE_CONVERSION_REQUEST;
-    }
-
-    public static function getCreateConversionRequestFixedSell(): array
-    {
-        return self::MOCK_CREATE_CONVERSION_REQUEST_FIXED_SELL;
     }
 
     public static function getConversion(): array

@@ -25,22 +25,6 @@ final class ConversionsClientTest extends TestCase
         $this->assertEquals($conversion, $resp);
     }
 
-    public function testCreateWithFixedSide(): void
-    {
-        $conversion = MockData::getInProgressConversion();
-        $req = new CreateConversionRequest(MockData::getCreateConversionRequestFixedSell());
-        $httpClient = $this->createMock(HttpInterface::class);
-        $client = new ConversionsClient($httpClient);
-
-        $httpClient->expects($this->any())
-            ->method("request")
-            ->with('POST', "/conversions", null, $req, null)
-            ->willReturn($conversion);
-
-        $resp = $client->create($req);
-        $this->assertEquals($conversion, $resp);
-    }
-
     public function testCreateWithAccount(): void
     {
         $conversion = MockData::getInProgressConversion();
@@ -99,7 +83,7 @@ final class ConversionsClientTest extends TestCase
             'endTimestamp' => 1631696705,
             'ascending' => false,
             'limit' => 2,
-            'startsAfter' => 'con_01FCTS1XMKH9FF43CAFA4CXT3P'
+            'startsAfter' => 'cv_01FCTS1XMKH9FF43CAFA4CXT3P'
         ];
 
         $httpClient->expects($this->any())
@@ -112,7 +96,7 @@ final class ConversionsClientTest extends TestCase
             1631696705,
             false,
             2,
-            'con_01FCTS1XMKH9FF43CAFA4CXT3P',
+            'cv_01FCTS1XMKH9FF43CAFA4CXT3P',
             'acc_123'
         );
         $this->assertEquals($conversions, $resp);
@@ -138,7 +122,7 @@ final class ConversionsClientTest extends TestCase
 
     public function testGet(): void
     {
-        $conversionId = "con_01FCTS1XMKH9FF43CAFA4CXT3P";
+        $conversionId = "cv_01FCTS1XMKH9FF43CAFA4CXT3P";
         $conversion = MockData::getConversion();
         $httpClient = $this->createMock(HttpInterface::class);
         $client = new ConversionsClient($httpClient);
@@ -154,7 +138,7 @@ final class ConversionsClientTest extends TestCase
 
     public function testGetWithSellSideFees(): void
     {
-        $conversionId = "con_01FCTS1XMKH9FF43CAFA4CXT3Q";
+        $conversionId = "cv_01FCTS1XMKH9FF43CAFA4CXT3Q";
         $conversion = MockData::getConversionWithSellSideFees();
         $httpClient = $this->createMock(HttpInterface::class);
         $client = new ConversionsClient($httpClient);
@@ -170,7 +154,7 @@ final class ConversionsClientTest extends TestCase
 
     public function testGetWithAccount(): void
     {
-        $conversionId = "con_01FCTS1XMKH9FF43CAFA4CXT3P";
+        $conversionId = "cv_01FCTS1XMKH9FF43CAFA4CXT3P";
         $conversion = MockData::getConversion();
         $httpClient = $this->createMock(HttpInterface::class);
         $client = new ConversionsClient($httpClient);

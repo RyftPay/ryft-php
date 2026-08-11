@@ -9,7 +9,6 @@ final class CreateConversionRequest extends AbstractRequest
     private $sell;
     private $buy;
     private $termAgreement;
-    private $fixedSide;
     private $reason;
 
     public function __construct(array $data = [])
@@ -17,7 +16,6 @@ final class CreateConversionRequest extends AbstractRequest
         $this->sell = $data['sell'] ?? null;
         $this->buy = $data['buy'] ?? null;
         $this->termAgreement = $data['termAgreement'] ?? null;
-        $this->fixedSide = $data['fixedSide'] ?? null;
         $this->reason = $data['reason'] ?? null;
     }
 
@@ -51,16 +49,6 @@ final class CreateConversionRequest extends AbstractRequest
         $this->termAgreement = $termAgreement;
     }
 
-    public function getFixedSide(): ?string
-    {
-        return $this->fixedSide;
-    }
-
-    public function setFixedSide(?string $fixedSide): void
-    {
-        $this->fixedSide = $fixedSide;
-    }
-
     public function getReason(): ?string
     {
         return $this->reason;
@@ -77,7 +65,6 @@ final class CreateConversionRequest extends AbstractRequest
             'sell' => $this->sell,
             'buy' => $this->buy,
             'termAgreement' => $this->termAgreement,
-            'fixedSide' => $this->fixedSide,
             'reason' => $this->reason
         ];
     }
