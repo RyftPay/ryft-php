@@ -12,14 +12,20 @@ final class PlatformFeesClient implements PlatformFeesInterface
         $this->httpClient = $httpClient;
     }
 
-    public function list(?bool $ascending = null, ?int $limit = null): array
-    {
+    public function list(
+        ?bool $ascending = null,
+        ?int $limit = null,
+        ?string $startsAfter = null
+    ): array {
         $params = [];
         if ($ascending !== null) {
             $params['ascending'] = $ascending;
         }
         if ($limit !== null) {
             $params['limit'] = $limit;
+        }
+        if ($startsAfter !== null) {
+            $params['startsAfter'] = $startsAfter;
         }
 
         return $this->httpClient->request('GET', $this->basePath, $params);
@@ -30,8 +36,23 @@ final class PlatformFeesClient implements PlatformFeesInterface
         return $this->httpClient->request('GET', $this->basePath . '/' . $id);
     }
 
-    public function getRefunds(string $id): array
-    {
-        return $this->httpClient->request('GET', $this->basePath . '/' . $id . '/refunds');
+    public function getRefunds(
+        string $id,
+        ?bool $ascending = null,
+        ?int $limit = null,
+        ?string $startsAfter = null
+    ): array {
+        $params = [];
+        if ($ascending !== null) {
+            $params['ascending'] = $ascending;
+        }
+        if ($limit !== null) {
+            $params['limit'] = $limit;
+        }
+        if ($startsAfter !== null) {
+            $params['startsAfter'] = $startsAfter;
+        }
+
+        return $this->httpClient->request('GET', $this->basePath . '/' . $id . '/refunds', $params);
     }
 }

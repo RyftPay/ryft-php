@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.0
+
+This release includes the following:
+ - Adds `$startsAfter` to `platformFees->list()`, for paging platform fees
+ - Adds `$ascending`, `$limit` and `$startsAfter` to `platformFees->getRefunds()`
+
 ## 2.1.0
 
 This release includes support for our new Conversions API

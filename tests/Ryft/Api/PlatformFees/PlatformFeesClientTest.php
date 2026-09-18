@@ -30,7 +30,8 @@ final class PlatformFeesClientTest extends TestCase
         $client = new PlatformFeesClient($httpClient);
         $expectedParams = [
             'ascending' => true,
-            'limit' => 50
+            'limit' => 50,
+            'startsAfter' => 'pf_01FCTS1XMKH9FF43CAFA4CXT3P'
         ];
 
         $httpClient->expects($this->any())
@@ -38,7 +39,7 @@ final class PlatformFeesClientTest extends TestCase
             ->with('GET', "/platform-fees", $expectedParams)
             ->willReturn($platformFees);
 
-        $resp = $client->list(true, 50);
+        $resp = $client->list(true, 50, 'pf_01FCTS1XMKH9FF43CAFA4CXT3P');
         $this->assertEquals($platformFees, $resp);
     }
 
@@ -85,10 +86,36 @@ final class PlatformFeesClientTest extends TestCase
 
         $httpClient->expects($this->any())
             ->method("request")
-            ->with('GET', "/platform-fees/" . $platformFeeId . "/refunds")
+            ->with('GET', "/platform-fees/" . $platformFeeId . "/refunds", [])
             ->willReturn($platformFeeRefunds);
 
         $resp = $client->getRefunds($platformFeeId);
+        $this->assertEquals($platformFeeRefunds, $resp);
+    }
+
+    public function testGetRefundsWithParams(): void
+    {
+        $platformFeeId = "pf_01FCTS1XMKH9FF43CAFA4CXT3P";
+        $platformFeeRefunds = MockData::getPlatformFeeRefunds();
+        $httpClient = $this->createMock(HttpInterface::class);
+        $client = new PlatformFeesClient($httpClient);
+        $expectedParams = [
+            'ascending' => false,
+            'limit' => 25,
+            'startsAfter' => 'fr_01FM9XMMV1MYDG6NGMHPDE065N_01FM9XNFXDYXAT0BJN5BBN794B'
+        ];
+
+        $httpClient->expects($this->any())
+            ->method("request")
+            ->with('GET', "/platform-fees/" . $platformFeeId . "/refunds", $expectedParams)
+            ->willReturn($platformFeeRefunds);
+
+        $resp = $client->getRefunds(
+            $platformFeeId,
+            false,
+            25,
+            'fr_01FM9XMMV1MYDG6NGMHPDE065N_01FM9XNFXDYXAT0BJN5BBN794B'
+        );
         $this->assertEquals($platformFeeRefunds, $resp);
     }
 }
