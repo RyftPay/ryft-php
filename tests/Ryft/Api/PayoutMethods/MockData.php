@@ -27,7 +27,8 @@ final class MockData
             ]
         ],
         "createdTimestamp" => 1470989538,
-        "lastUpdatedTimestamp" => 1470989538
+        "lastUpdatedTimestamp" => 1470989538,
+        "default" => true
     ];
 
     private const MOCK_PAYOUT_METHOD_LIST = [

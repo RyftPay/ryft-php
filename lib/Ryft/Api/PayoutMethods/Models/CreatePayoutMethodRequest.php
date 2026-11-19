@@ -11,6 +11,7 @@ final class CreatePayoutMethodRequest extends AbstractRequest
     private $currency = null;
     private $country = null;
     private $bankAccount = null;
+    private $default = null;
 
     public function __construct(array $data = [])
     {
@@ -28,6 +29,9 @@ final class CreatePayoutMethodRequest extends AbstractRequest
         }
         if (isset($data['bankAccount'])) {
             $this->bankAccount = $data['bankAccount'];
+        }
+        if (isset($data['default'])) {
+            $this->default = $data['default'];
         }
     }
 
@@ -86,6 +90,17 @@ final class CreatePayoutMethodRequest extends AbstractRequest
         return $this;
     }
 
+    public function getDefault(): ?bool
+    {
+        return $this->default;
+    }
+
+    public function setDefault(?bool $default): self
+    {
+        $this->default = $default;
+        return $this;
+    }
+
     public function toArray(): array
     {
         return [
@@ -93,7 +108,8 @@ final class CreatePayoutMethodRequest extends AbstractRequest
             'displayName' => $this->displayName,
             'currency' => $this->currency,
             'country' => $this->country,
-            'bankAccount' => $this->bankAccount
+            'bankAccount' => $this->bankAccount,
+            'default' => $this->default
         ];
     }
 }
