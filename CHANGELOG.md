@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.0
+
+This release includes the following:
+ - Adds `default` to `CreatePayoutMethodRequest` and `UpdatePayoutMethodRequest` (`setDefault()` / `getDefault()`), for nominating the payout method that funds are automatically converted into. Only `true` is accepted; nominating a different payout method replaces the existing default
+ - Payout method and conversion responses are returned as arrays, so the new `default` field on payout methods and `triggerType` (`Manual` or `Automatic`) on conversions are available without any SDK changes. `reason` and `createdBy` are null for automatic conversions
+
 ## 2.2.0
 
 This release includes the following:

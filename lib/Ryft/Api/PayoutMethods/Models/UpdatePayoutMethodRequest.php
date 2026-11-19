@@ -8,6 +8,7 @@ final class UpdatePayoutMethodRequest extends AbstractRequest
 {
     private $displayName = null;
     private $bankAccount = null;
+    private $default = null;
 
     public function __construct(array $data = [])
     {
@@ -16,6 +17,9 @@ final class UpdatePayoutMethodRequest extends AbstractRequest
         }
         if (isset($data['bankAccount'])) {
             $this->bankAccount = $data['bankAccount'];
+        }
+        if (isset($data['default'])) {
+            $this->default = $data['default'];
         }
     }
 
@@ -41,11 +45,23 @@ final class UpdatePayoutMethodRequest extends AbstractRequest
         return $this;
     }
 
+    public function getDefault(): ?bool
+    {
+        return $this->default;
+    }
+
+    public function setDefault(?bool $default): self
+    {
+        $this->default = $default;
+        return $this;
+    }
+
     public function toArray(): array
     {
         return [
             'displayName' => $this->displayName,
-            'bankAccount' => $this->bankAccount
+            'bankAccount' => $this->bankAccount,
+            'default' => $this->default
         ];
     }
 }

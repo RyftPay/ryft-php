@@ -61,6 +61,45 @@ final class PayoutMethodsClientTest extends TestCase
         $this->assertEquals($payoutMethod, $resp);
     }
 
+    public function testCreateWithDefault(): void
+    {
+        $payoutMethod = MockData::getPayoutMethod();
+        $accountId = "acc_123";
+        $req = new CreatePayoutMethodRequest(MockData::getCreateRequestGBP());
+        $req->setDefault(true);
+        $httpClient = $this->createMock(HttpInterface::class);
+        $client = new PayoutMethodsClient($httpClient);
+
+        $this->assertTrue($req->getDefault());
+        $this->assertTrue($req->toArray()['default']);
+
+        $httpClient->expects($this->any())
+            ->method("request")
+            ->with('POST', "/accounts/" . $accountId . "/payout-methods", null, $req)
+            ->willReturn($payoutMethod);
+
+        $resp = $client->create($accountId, $req);
+        $this->assertEquals($payoutMethod, $resp);
+    }
+
+    public function testCreateDefaultFromArray(): void
+    {
+        $data = MockData::getCreateRequestGBP();
+        $data['default'] = true;
+        $req = new CreatePayoutMethodRequest($data);
+
+        $this->assertTrue($req->getDefault());
+        $this->assertTrue($req->toArray()['default']);
+    }
+
+    public function testCreateDefaultIsNullWhenNotSet(): void
+    {
+        $req = new CreatePayoutMethodRequest(MockData::getCreateRequestGBP());
+
+        $this->assertNull($req->getDefault());
+        $this->assertNull($req->toArray()['default']);
+    }
+
     public function testList(): void
     {
         $payoutMethods = MockData::getPayoutMethodList();
@@ -142,6 +181,30 @@ final class PayoutMethodsClientTest extends TestCase
         $req = new UpdatePayoutMethodRequest(MockData::getUpdateRequest());
         $httpClient = $this->createMock(HttpInterface::class);
         $client = new PayoutMethodsClient($httpClient);
+
+        $httpClient->expects($this->any())
+            ->method("request")
+            ->with('PATCH', "/accounts/" . $accountId . "/payout-methods/" . $payoutMethodId, null, $req)
+            ->willReturn($payoutMethod);
+
+        $resp = $client->update($accountId, $payoutMethodId, $req);
+        $this->assertEquals($payoutMethod, $resp);
+    }
+
+    public function testUpdateNominateDefault(): void
+    {
+        $payoutMethod = MockData::getPayoutMethod();
+        $accountId = "acc_123";
+        $payoutMethodId = "pm_01G0EYVFR02KBBVE2YWQ8AKMGJ";
+        $req = (new UpdatePayoutMethodRequest())->setDefault(true);
+        $httpClient = $this->createMock(HttpInterface::class);
+        $client = new PayoutMethodsClient($httpClient);
+
+        $this->assertTrue($req->getDefault());
+        $this->assertSame(
+            ['displayName' => null, 'bankAccount' => null, 'default' => true],
+            $req->toArray()
+        );
 
         $httpClient->expects($this->any())
             ->method("request")
